@@ -1,21 +1,19 @@
-echo "Deploy starting..."
+#!/bin/bash
+set -e
 
-git pull origin master
+echo "Deployment started..."
 
-npm install || exit
+# Pull the latest version of the app
 
-BUILD_DIR=temp npm run build || exit
+echo "New changes copied to server !"
 
-if [ ! -d "temp" ]; then
-  echo '\033[31m temp Directory not exists!\033[0m'  
-  exit 1;
-fi
+echo "Installing Dependencies..."
+npm i
 
+echo "Creating Production Build..."
+npm run build
 
-rm -rf .next
+echo "PM2 Reload"
+pm2 reload github-actions-vps
 
-mv temp .next
-
-pm2 reload app --update-env
-
-echo "Deploy done."
+echo "Deployment Finished!"
