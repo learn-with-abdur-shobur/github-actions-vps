@@ -13,16 +13,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14.x] # Update to match your project's Node.js version
-
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
+      - uses: actions/checkout@v4
       - name: Deploy to Server
         uses: appleboy/ssh-action@master
         with:
