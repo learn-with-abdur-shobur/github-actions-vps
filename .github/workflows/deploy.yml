@@ -27,11 +27,5 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Check directory existence
-        run: |
-          ls /var/www/github-actions-vps
-
       - name: Deploy and Reload with pm2
-        run: |
-          cd /var/www/github-actions-vps
-          pm2 reload github-actions-vps
+        run: pm2 reload github-actions-vps
