@@ -21,6 +21,4 @@ jobs:
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSHKEY }}
           cache: 'npm'
-      - run: npm i
-      - run: npm run build
-      - run: pm2 reload github-actions-vps
+          script: 'cd /var/www/github-actions-vps && ./.scripts/deploy.sh'
